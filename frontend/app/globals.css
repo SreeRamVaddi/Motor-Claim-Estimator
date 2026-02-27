@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  /* Font variables — next/font sets --font-instrument and --font-mono on <html>,
+     Clash Display is loaded via Fontshare link tag so we define it manually */
+  --font-clash: 'Clash Display';
+
+  /* Backgrounds */
+  --bg-void: #000000;
+  --bg-deep: #0A0A0F;
+  --bg-surface: #111118;
+  --bg-elevated: #1A1A24;
+  --bg-light: #F5F5F7;
+  --bg-white: #FFFFFF;
+
+  /* Accent Colors */
+  --accent-primary: #FF3B30;
+  --accent-electric: #0071E3;
+  --accent-gold: #FFD60A;
+  --accent-green: #30D158;
+  --accent-glow: rgba(0, 113, 227, 0.3);
+
+  /* Typography */
+  --text-primary: #F5F5F7;
+  --text-secondary: #A1A1A6;
+  --text-tertiary: #6E6E73;
+  --text-dark: #1D1D1F;
+  --text-dark-2: #6E6E73;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Base Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  /* Lenis handles smooth scroll */
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: 'Instrument Serif', serif;
+  overflow-x: hidden;
+}
+
+/* ── Typography Utilities ── */
+.font-clash {
+  font-family: 'Clash Display', sans-serif;
+}
+
+.font-instrument {
+  font-family: 'Instrument Serif', serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Headline Sizes ── */
+.hero-headline {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(64px, 10vw, 144px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.section-headline {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+
+.panel-headline {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.label-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.label-mono-electric {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-electric);
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(0, 113, 227, 0.4);
+  color: white;
+}
+
+/* ── Lenis smooth scroll wrapper ── */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ── Glass card effect ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Glow effects ── */
+.glow-electric {
+  box-shadow: 0 0 40px rgba(0, 113, 227, 0.3),
+    0 0 80px rgba(0, 113, 227, 0.1);
+}
+
+.glow-red {
+  box-shadow: 0 0 40px rgba(255, 59, 48, 0.3);
+}
+
+.glow-green {
+  box-shadow: 0 0 40px rgba(48, 209, 88, 0.3);
+}
+
+/* ── Gradient text ── */
+.gradient-text-electric {
+  background: linear-gradient(135deg, #0071E3, #00C7FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-fire {
+  background: linear-gradient(135deg, #FF3B30, #FFD60A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── SVG animations ── */
+@keyframes drawPath {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 1.5s ease forwards;
+}
+
+/* ── Noise texture overlay ── */
+.noise-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ── Input Styles ── */
+.input-dark {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+}
+
+.input-dark:focus {
+  outline: none;
+  border-color: var(--accent-electric);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+.input-dark::placeholder {
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+/* ── Section dividers ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Clip path reveals ── */
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.clip-revealed {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ── Reduced motion support ── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
